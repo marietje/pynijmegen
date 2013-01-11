@@ -1,0 +1,8 @@
+includes:
+ - joyce
+definitions:
+ pynijmegen:
+  implementedBy: pynijmegen.main.PyNijmegen
+  run: true
+  settings:
+    joyceClient: {type: joyceClient}
