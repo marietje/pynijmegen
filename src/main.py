@@ -88,12 +88,11 @@ class ScrollWidget(gtk.DrawingArea):
         self.update()
 
     def draw(self, c):
-        SIZES = (128, 160, 128)
+        SIZES = (64, 96, 64)
         rect = self.get_allocation()
         c.rectangle(rect.x, rect.y, rect.width, rect.height)
         c.set_source_rgb(0xbe/255.0,0x31/255.0,0x1a/255.0)
         c.fill()
-        c.select_font_face('Comic Serif')
         c.set_source_rgb(1,1,1)
         heights = list()
         bearings = list()
