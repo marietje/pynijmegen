@@ -3,11 +3,14 @@
 import logging
 import argparse
 import threading
+import subprocess
 
 import mirte
 import mirte.main
 import mirte.mirteFile
 import sarah.coloredLogging
+
+# TODO Volume control via Joyce.
 
 class Launcher(object):
     def __init__(self):
@@ -26,6 +29,14 @@ class Launcher(object):
         if self.args.verbosity >= 1:
             sarah.coloredLogging.basicConfig(level=logging.DEBUG,
                                     formatter=mirte.main.MirteFormatter())
+        subprocess.call(['amixer', 'set', 'Master', 'unmute'],
+                            stdout=subprocess.PIPE)
+        subprocess.call(['amixer', 'set', 'Master', '50%'],
+                            stdout=subprocess.PIPE)
+        subprocess.call(['amixer', 'set', 'PCM', 'unmute'],
+                            stdout=subprocess.PIPE)
+        subprocess.call(['amixer', 'set', 'PCM', '0dB'],
+                            stdout=subprocess.PIPE)
         self.mirte_manager = m = mirte.get_a_manager()
         mirte.mirteFile.load_mirteFile('pynijmegen', m)
         mirte.mirteFile.load_mirteFile('joyce/comet', m)
