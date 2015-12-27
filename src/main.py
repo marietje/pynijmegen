@@ -35,8 +35,10 @@ class MarietjeClientChannel(JoyceChannel):
     def msg_playing(self, data):
         self.s.sw.set_text('Marietje' if not data['playing']['byKey']
                                     else data['playing']['byKey'],
-                                data['playing']['media']['artist'],
-                                data['playing']['media']['title'])
+                data['playing']['media']['artist'] if data['playing']['media']
+                        else '(nothing playing)',
+                data['playing']['media']['title'] if data['playing']['media']
+                        else '')
     def msg_requests(self, data):
         pass
 
