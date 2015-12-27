@@ -143,10 +143,10 @@ class PyNijmegen(Module):
         super(PyNijmegen, self).__init__(settings, l)
         def _channel_class(*args, **kwargs):
             return MarietjeClientChannel(self, *args, **kwargs)
-        self.channel = self.joyceClient.create_channel(
-                        channel_class=_channel_class)
         w = self.w = gtk.Window()
         sw = self.sw = ScrollWidget()
+        self.channel = self.joyceClient.create_channel(
+                        channel_class=_channel_class)
         sw.set_text('?', '?', '?')
         w.add(sw)
         w.connect("destroy", gtk.main_quit)
