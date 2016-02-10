@@ -53,25 +53,25 @@ class ScrollWidget(gtk.DrawingArea):
 	
     def on_scroll(self, widget, event):
         if event.direction == gdk.SCROLL_UP:
-            subprocess.call(['amixer', 'set', 'Master', '1%+'],
+            subprocess.call(['amixer', 'set', 'PCM', '1%+'],
                     stdout=subprocess.PIPE)
         elif event.direction == gdk.SCROLL_DOWN:
-            subprocess.call(['amixer', 'set', 'Master', '1%-'],
+            subprocess.call(['amixer', 'set', 'PCM', '1%-'],
                     stdout=subprocess.PIPE)
 
     def on_button_press(self, widget, event):
         if event.button == 1:
-            subprocess.call(['amixer', 'set', 'Master', '1%+'],
+            subprocess.call(['amixer', 'set', 'PCM', '1%+'],
                     stdout=subprocess.PIPE)
         elif event.button == 2:
-            subprocess.call(['amixer', 'set', 'Master', 'toggle'],
+            subprocess.call(['amixer', 'set', 'Master', 'unmute'],
                     stdout=subprocess.PIPE)
-            subprocess.call(['amixer', 'set', 'PCM', 'unmute'],
+            subprocess.call(['amixer', 'set', 'PCM', 'toggle'],
                     stdout=subprocess.PIPE)
             subprocess.call(['amixer', 'set', 'Headphone','unmute'],
                    stdout=subprocess.PIPE)
         elif event.button == 3:
-            subprocess.call(['amixer', 'set', 'Master', '1%-'],
+            subprocess.call(['amixer', 'set', 'PCM', '1%-'],
                     stdout=subprocess.PIPE)
     
     def on_expose(self, widget, event):
