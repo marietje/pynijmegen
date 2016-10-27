@@ -50,7 +50,7 @@ class ScrollWidget(gtk.DrawingArea):
         self.connect('expose_event', self.on_expose)
         self.connect('button_press_event', self.on_button_press)
         self.connect('scroll_event', self.on_scroll)
-	
+
     def on_scroll(self, widget, event):
         if event.direction == gdk.SCROLL_UP:
             subprocess.call(['amixer', 'set', 'Master', '1%+'],
@@ -73,7 +73,7 @@ class ScrollWidget(gtk.DrawingArea):
         elif event.button == 3:
             subprocess.call(['amixer', 'set', 'Master', '1%-'],
                     stdout=subprocess.PIPE)
-    
+
     def on_expose(self, widget, event):
         c = widget.window.cairo_create()
         c.rectangle(event.area.x, event.area.y,
@@ -128,10 +128,10 @@ class ScrollWidget(gtk.DrawingArea):
             off += heights[i]
         c.stroke()
 
-    
+
     def update(self):
         if self.window is None:
-            return 
+            return
         alloc = self.get_allocation()
         rect = gdk.Rectangle(alloc.x, alloc.y,
                              alloc.width, alloc.height)
@@ -150,7 +150,7 @@ class PyNijmegen(Module):
         sw.set_text('?', '?', '?')
         w.add(sw)
         w.connect("destroy", gtk.main_quit)
-    
+
     def run(self):
         # TODO Use the GtkMainLoop of maried.gstreamer
         self.w.show_all()
