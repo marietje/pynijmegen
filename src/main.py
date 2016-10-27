@@ -97,7 +97,7 @@ class ScrollWidget(gtk.DrawingArea):
         heights = list()
         bearings = list()
         corrected_text = []
-        for i, bit in enumerate(self.text):
+        for i, bit in enumerate(x.decode('utf-8') for x in self.text):
             c.set_font_size(SIZES[i])
             first_try = True
             ellipsis = u'\u2026'
